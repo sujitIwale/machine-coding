@@ -1,0 +1,17 @@
+.folder-tree {
+    min-width: 200px;
+}
+
+.node {
+    margin-left: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.folder-item {
+    display: flex;
+    justify-content: space-between;
+    user-select: none;
+}
