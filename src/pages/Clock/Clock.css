@@ -1,0 +1,89 @@
+.clock-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .clock {
+    height: 350px;
+    width: 350px;
+    border: 15px solid black;
+    border-radius: 50%;
+    position: relative;
+  }
+
+.dot {
+  height: 30px;
+  width: 30px;
+  background-color: black;
+  position: absolute;
+  border-radius: 50%;
+  inset: 0;
+  margin: auto;
+  z-index: 5;
+}
+
+ 
+.hand {
+  position: absolute;
+  left: 50%;
+  bottom: 50%;
+  border-top-left-radius: 30%;
+  border-top-right-radius: 30%;
+  transform-origin: bottom;
+  transition: transform 1.2s ease-in-out;
+}
+
+.hand.second {
+  height: 130px;
+  width: 5px;
+  background-color: grey;
+  z-index: 1;
+}
+
+.hand.minute {
+  height: 100px;
+  width: 5px;
+  background-color: rgb(131, 130, 130);
+  z-index: 2;
+}
+
+.hand.hour {
+  height: 60px;
+  width: 5px;
+  background-color: rgb(9, 9, 9);
+  z-index: 3;
+}
+
+.mark {
+  background-color: black;
+  display: inline-block;
+  position: absolute;
+}
+
+.mark.twelve {
+  left: 50%;
+  width: 3px;
+  height: 20px;
+}
+
+.mark.three {
+  height: 3px;
+  width: 20px;
+  right: 0;
+  top: 50%;
+}
+
+.mark.six {
+  width: 3px;
+  height: 20px;
+  bottom: 0;
+  left: 50%;
+}
+
+.mark.nine {
+  height: 3px;
+  width: 20px;
+  left: 0;
+  top: 50%;
+}
