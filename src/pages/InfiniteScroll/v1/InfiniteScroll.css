@@ -1,0 +1,21 @@
+.main-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.items-container {
+    overflow: auto;
+    width: 500px;
+    max-height: 500px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.item {
+    padding: 20px;
+    background-color: lightblue;
+}
