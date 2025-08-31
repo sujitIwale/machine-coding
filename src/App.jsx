@@ -19,6 +19,7 @@ function App() {
           <Route path="/folder-tree" Component={FolderTreePage} />
           <Route path="/infinite-scroll" Component={InfiniteScroll} />
           <Route path="/infinite-scroll/v2" Component={InfiniteScrollV2} />
+          <Route path="/nested-checkbox" Component={NestedCheckboxTree} />
        </Route>
       </Routes>
     </BrowserRouter>

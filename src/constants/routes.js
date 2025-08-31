@@ -10,5 +10,9 @@ export const routes = [
     {
         name: 'Infinte scroll',
         route: '/infinite-scroll'
+    },
+    {
+        name: 'Nested Checkbox',
+        route: 'nested-checkbox'
     }
 ]
