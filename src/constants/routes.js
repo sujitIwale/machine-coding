@@ -14,5 +14,9 @@ export const routes = [
     {
         name: 'Nested Checkbox',
         route: 'nested-checkbox'
+    },
+    {
+        name: "Otp Input",
+        route: 'otp-input'
     }
 ]

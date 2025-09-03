@@ -6,7 +6,8 @@ import Clock from "./pages/Clock/Clock";
 import FolderTreePage from "./pages/FolderTree/FolderTreePage";
 import InfiniteScroll from "./pages/InfiniteScroll/v1/InfiniteScroll";
 import InfiniteScrollV2 from "./pages/InfiniteScroll/v2/InfiniteScrollV2";
-import Layout from "./components/Layout";
+import Layout from "./components/Layout/Layout";
+import OtpInputPage from "./pages/OtpInput/page";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/infinite-scroll" Component={InfiniteScroll} />
           <Route path="/infinite-scroll/v2" Component={InfiniteScrollV2} />
           <Route path="/nested-checkbox" Component={NestedCheckboxTree} />
+          <Route path="/otp-input" Component={OtpInputPage} />
        </Route>
       </Routes>
     </BrowserRouter>
