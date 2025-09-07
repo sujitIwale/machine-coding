@@ -1,29 +1,25 @@
 import './App.css';
-import { BrowserRouter, Route, Routes } from 'react-router';
-import HomePage from './pages/Home';
-import NestedCheckboxTree from './pages/NestedCheckBox/NestedCheckBox';
-import Clock from './pages/Clock/Clock';
-import FolderTreePage from './pages/FolderTree/FolderTreePage';
-import InfiniteScroll from './pages/InfiniteScroll/v1/InfiniteScroll';
-import InfiniteScrollV2 from './pages/InfiniteScroll/v2/InfiniteScrollV2';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Layout from './components/Layout/Layout';
-import OtpInputPage from './pages/OtpInput/page';
-import TabsPage from './pages/Tabs/page';
+import { routes } from './constants/routes';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" Component={HomePage} />
         <Route element={<Layout />}>
-          <Route path="/nested-checkbox" Component={NestedCheckboxTree} />
-          <Route path="/clock" Component={Clock} />
-          <Route path="/folder-tree" Component={FolderTreePage} />
-          <Route path="/infinite-scroll" Component={InfiniteScroll} />
-          <Route path="/infinite-scroll/v2" Component={InfiniteScrollV2} />
-          <Route path="/nested-checkbox" Component={NestedCheckboxTree} />
-          <Route path="/otp-input" Component={OtpInputPage} />
-          <Route path="/tabs" Component={TabsPage} />
+          <Route path="/" Component={() => <div>Hello Welcome</div>} />
+          {routes.map((route) => {
+            if (route.versions?.length) {
+              return route.versions?.map((subRoute) => (
+                <Route
+                  path={`/${route.path}/${subRoute.id}`}
+                  Component={subRoute.component}
+                />
+              ));
+            }
+            return <Route path={route.path} Component={route.component} />;
+          })}
         </Route>
       </Routes>
     </BrowserRouter>

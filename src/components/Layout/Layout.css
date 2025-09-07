@@ -1,7 +1,10 @@
-.main-container {
+.layout {
+    height: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
+}
+
+.main-container {
+    flex: 1;
     height: 100%;
     width: 100%;
 }

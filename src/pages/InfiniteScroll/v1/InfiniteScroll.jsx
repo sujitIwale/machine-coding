@@ -1,44 +1,50 @@
-import { useCallback, useEffect, useRef, useState } from "react";
-import "./InfiniteScroll.css";
-import { debounce ,throttle} from "../../../utils";
-import { data } from "react-router";
+import { useCallback, useEffect, useRef, useState } from 'react';
+import './InfiniteScroll.css';
+import { throttle } from '../../../utils';
 
-const MAX_PAGE = 5
+const MAX_PAGE = 5;
 
 const getData = (page) => {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     setTimeout(() => {
-      resolve(
-        {data:Array.from({ length: 20 }, (_, i) => `Item ${(page - 1) * 20 + i + 1}`),hasMore: page < MAX_PAGE}
-      );
+      resolve({
+        data: Array.from(
+          { length: 20 },
+          (_, i) => `Item ${(page - 1) * 20 + i + 1}`
+        ),
+        hasMore: page < MAX_PAGE,
+      });
     }, 2000);
   });
 };
 
 const InfiniteScrollV1 = () => {
   const loadingRef = useRef();
-  const currentPage = useRef(0)
+  const currentPage = useRef(0);
   const containerRef = useRef();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [hasMore,setHasMore] = useState(true)
+  const [hasMore, setHasMore] = useState(true);
 
-  const fetchData = useCallback((page) => {
-    console.log('fetch triggered')
-    if (loadingRef.current || !hasMore) return;
-    setLoading(true);
-    loadingRef.current = true;
-    console.log('fetching data')
-    getData(page).then((res) => {
-      setData((prev) => [...prev, ...res.data]);
-      setLoading(false);
-      setHasMore(res.hasMore)
-      loadingRef.current = false;
-      currentPage.current = page
-    });
-  },[hasMore])
+  const fetchData = useCallback(
+    (page) => {
+      console.log('fetch triggered');
+      if (loadingRef.current || !hasMore) return;
+      setLoading(true);
+      loadingRef.current = true;
+      console.log('fetching data');
+      getData(page).then((res) => {
+        setData((prev) => [...prev, ...res.data]);
+        setLoading(false);
+        setHasMore(res.hasMore);
+        loadingRef.current = false;
+        currentPage.current = page;
+      });
+    },
+    [hasMore]
+  );
 
-  console.log({ currentPage : currentPage.current,hasMore});
+  console.log({ currentPage: currentPage.current, hasMore });
 
   useEffect(() => {
     fetchData(1);
@@ -54,21 +60,25 @@ const InfiniteScrollV1 = () => {
       const { scrollTop, clientHeight, scrollHeight } = container;
       const distanceFromBottom = scrollHeight - scrollTop - clientHeight;
 
-      console.log({ scrollTop, clientHeight, scrollHeight, distanceFromBottom });
+      console.log({
+        scrollTop,
+        clientHeight,
+        scrollHeight,
+        distanceFromBottom,
+      });
 
-      if (distanceFromBottom <= 150  && !loadingRef.current) {
+      if (distanceFromBottom <= 150 && !loadingRef.current) {
         fetchData(currentPage.current + 1);
       }
     };
 
     const throttledScroll = throttle(handleScroll, 100); // Reduced throttle delay
-    container.addEventListener("scroll", throttledScroll);
-  
+    container.addEventListener('scroll', throttledScroll);
+
     return () => {
-      container.removeEventListener("scroll", throttledScroll);
+      container.removeEventListener('scroll', throttledScroll);
     };
   }, [fetchData]);
-  
 
   return (
     <div className="main-container">
@@ -78,7 +88,7 @@ const InfiniteScrollV1 = () => {
             {item}
           </div>
         ))}
-         {hasMore ? <div>loading ...</div> : <div>List ended</div>}
+        {hasMore ? <div>loading ...</div> : <div>List ended</div>}
       </div>
     </div>
   );

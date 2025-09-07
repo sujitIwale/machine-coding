@@ -1,6 +1,7 @@
-import Tabs from './Tabs';
+import { Tabs } from '@/components/Tabs/v1';
 
-const TabsPage = () => {
+const TabsPageV1 = () => {
+  console.log('calling Tabs');
   return (
     <div>
       <Tabs value={'js'}>
@@ -18,4 +19,4 @@ const TabsPage = () => {
   );
 };
 
-export default TabsPage;
+export default TabsPageV1;

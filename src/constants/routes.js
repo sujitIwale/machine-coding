@@ -1,26 +1,23 @@
+import { lazy } from 'react';
+const TabsPageV1 = lazy(() => import('@/pages/Tabs/v1'));
+const AnalogClockPage = lazy(() => import('@/pages/Clock'));
+
 export const routes = [
   {
-    name: 'Analog Clock',
-    route: '/clock',
-  },
-  {
-    name: 'FolderTree',
-    route: '/folder-tree',
-  },
-  {
-    name: 'Infinte scroll',
-    route: '/infinite-scroll',
-  },
-  {
-    name: 'Nested Checkbox',
-    route: 'nested-checkbox',
-  },
-  {
-    name: 'Otp Input',
-    route: 'otp-input',
-  },
-  {
     name: 'Tabs',
-    route: 'tabs',
+    path: 'tabs',
+    default: 'simple',
+    versions: [
+      {
+        name: 'Simple',
+        id: 'simple',
+        component: TabsPageV1,
+      },
+    ],
+  },
+  {
+    name: 'Analog clock',
+    path: 'analog-clock',
+    component: AnalogClockPage,
   },
 ];

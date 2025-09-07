@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import './Clock.css';
 
-const Clock = () => {
+const AnalogClock = () => {
   const [time, setTime] = useState(new Date());
   const intervalRef = useRef(undefined);
 
@@ -57,4 +57,4 @@ const Clock = () => {
   );
 };
 
-export default Clock;
+export default AnalogClock;

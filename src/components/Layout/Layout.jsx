@@ -1,17 +1,24 @@
-import { Outlet, useNavigate } from "react-router"
-import './Layout.css'
+import { Outlet } from 'react-router-dom';
+import './Layout.css';
+import SideBar from './Sidebar/Sidebar';
+import { Suspense, useState } from 'react';
 
 const Layout = () => {
-    const navigate = useNavigate()
+  const [sidebarWidth, setSidebarWidth] = useState(30);
 
-    return <div>
-        <header><button onClick={() => navigate('/')}>Back</button></header>
-        <main className="main-container">
-        <div>
-            <Outlet />
-        </div>
-    </main>
+  return (
+    <div className="layout">
+      {/* <header>
+        <button onClick={() => navigate('/')}>Back</button>
+      </header> */}
+      <SideBar width={sidebarWidth} />
+      <main className="main-container">
+        <Suspense fallback={<div className="loading">Loading content...</div>}>
+          <Outlet />
+        </Suspense>
+      </main>
     </div>
-}
+  );
+};
 
-export default Layout
+export default Layout;
