@@ -1,0 +1,16 @@
+.tabs-list {
+    position: relative;
+    display: flex;
+    gap: 6px;
+    padding: 8px;
+    background-color: bisque;
+    border-radius: 8px;
+}
+
+.tab {
+    cursor: pointer;
+}
+
+.tab.active {
+    color: red;
+}
