@@ -1,14 +1,13 @@
 import { Tabs } from '@/components/Tabs/v1';
 
 const TabsPageV1 = () => {
-  console.log('calling Tabs');
   return (
     <div>
-      <Tabs value={'js'}>
+      <Tabs defaultValue={'js'}>
         <Tabs.TabsList>
-          <Tabs.Tab value={'js'} label={'Javascript'} />
-          <Tabs.Tab value={'css'} label={'Css'} />
-          <Tabs.Tab value={'ts'} label={'Typescript'} />
+          <Tabs.Tab value={'js'}>Javascript</Tabs.Tab>
+          <Tabs.Tab value={'css'}>Css</Tabs.Tab>
+          <Tabs.Tab value={'ts'}>Typescript</Tabs.Tab>
         </Tabs.TabsList>
 
         <Tabs.TabContent value={'js'}>This is JS</Tabs.TabContent>

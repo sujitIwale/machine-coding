@@ -1,16 +1,35 @@
+.tabs {
+    position: relative;
+    width: max-content;
+}
+
 .tabs-list {
     position: relative;
     display: flex;
-    gap: 6px;
-    padding: 8px;
-    background-color: bisque;
-    border-radius: 8px;
+    gap: 4px;
+    padding: 4px;
+    background-color: rgb(94, 94, 94);
+    border-radius: 5px;
 }
 
 .tab {
+    border: none;
+    background-color: transparent;
+    padding: 6px 12px;
     cursor: pointer;
+    position: relative;
+    z-index: 2;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
 }
 
 .tab.active {
-    color: red;
+    color: white;
+}
+
+.tabs-indicator {
+    border-radius: 4px;
+    position: absolute;
+    background-color: rgba(135, 135, 135, 0.787);
 }

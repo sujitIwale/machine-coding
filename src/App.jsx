@@ -8,8 +8,8 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route element={<Layout />}>
-          <Route path="/" Component={() => <div>Hello Welcome</div>} />
-          {routes.map((route) => {
+          <Route path="/" element={<div>Hello Welcome</div>} />
+{routes.map((route) => {
             if (route.versions?.length) {
               return route.versions?.map((subRoute) => (
                 <Route
