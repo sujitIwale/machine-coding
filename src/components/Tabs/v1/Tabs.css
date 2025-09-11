@@ -22,6 +22,11 @@
     color: white;
     font-size: 14px;
     font-weight: 500;
+    user-select: none;
+}
+
+.tab:disabled {
+    color: rgb(164, 164, 164);
 }
 
 .tab.active {

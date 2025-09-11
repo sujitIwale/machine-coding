@@ -84,7 +84,7 @@ const TabsList = ({ children }) => {
   return <div className="tabs-list">{children}</div>;
 };
 
-const Tab = ({ value, children }) => {
+const Tab = ({ value, children, disabled }) => {
   const { currentTab, onChange, registerTab } = useTabs();
 
   const callbackRef = useCallback(
@@ -99,13 +99,14 @@ const Tab = ({ value, children }) => {
       className={`tab ${currentTab === value ? 'active' : ''}`}
       onClick={() => onChange(value)}
       ref={callbackRef}
+      disabled={disabled}
     >
       {children}
     </button>
   );
 };
 
-const TabContent = ({ children, value }) => {
+const TabPanel = ({ children, value }) => {
   const { currentTab } = useTabs();
   if (value === currentTab) return <div>{children}</div>;
 
@@ -113,7 +114,7 @@ const TabContent = ({ children, value }) => {
 };
 
 Tabs.TabsList = TabsList;
-Tabs.TabContent = TabContent;
+Tabs.TabPanel = TabPanel;
 Tabs.Tab = Tab;
 
 export default Tabs;
