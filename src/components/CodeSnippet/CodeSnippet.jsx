@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
-const CodeSnippet = ({ gistId, file }) => {
+const CodeSnippet = ({ gistId, file, hidden }) => {
   const [code, setCode] = useState('');
 
   useEffect(() => {
+    if (hidden) return;
+
     const fetchGist = async () => {
       try {
         const res = await fetch(`https://api.github.com/gists/${gistId}`);
@@ -23,16 +25,18 @@ const CodeSnippet = ({ gistId, file }) => {
     };
 
     fetchGist();
-  }, [gistId, file]);
+  }, [gistId, file, hidden]);
 
   return (
-    <SyntaxHighlighter
-      language="javascript"
-      style={vscDarkPlus}
-      showLineNumbers
-    >
-      {code}
-    </SyntaxHighlighter>
+    <div className={`${hidden ? 'hidden' : ''}`}>
+      <SyntaxHighlighter
+        language="javascript"
+        style={vscDarkPlus}
+        showLineNumbers
+      >
+        {code}
+      </SyntaxHighlighter>
+    </div>
   );
 };
 

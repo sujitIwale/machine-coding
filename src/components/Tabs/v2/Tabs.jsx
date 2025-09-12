@@ -2,10 +2,12 @@ import React, {
   createContext,
   useCallback,
   useContext,
+  useLayoutEffect,
   useMemo,
+  useRef,
   useState,
 } from 'react';
-// import './Tabs.css';
+import './Tabs.css';
 
 const TabsContext = createContext(null);
 
@@ -18,9 +20,28 @@ const useTabs = () => {
 
 const Tabs = ({ children, value, onChange, defaultValue }) => {
   const [internalValue, setInternalValue] = useState(defaultValue);
+  const [indicatorStyle, setIndicatorStyle] = useState({});
+  const tabs = useRef({});
 
   const isControlled = value !== undefined;
   const currentTab = isControlled ? value : internalValue;
+
+  const registerTab = useCallback((tabValue, element) => {
+    tabs.current[tabValue] = element;
+  }, []);
+
+  const updateIndicator = (tabValue) => {
+    const tabElement = tabs.current[tabValue];
+
+    if (tabElement) {
+      setIndicatorStyle({
+        height: tabElement.offsetHeight,
+        width: tabElement.offsetWidth,
+        transform: `translateX(${tabElement.offsetLeft}px)`,
+        top: tabElement.offsetTop,
+      });
+    }
+  };
 
   const handleTabChange = useCallback(
     (tabValue) => {
@@ -32,19 +53,31 @@ const Tabs = ({ children, value, onChange, defaultValue }) => {
     [isControlled, onChange]
   );
 
+  useLayoutEffect(() => {
+    updateIndicator(currentTab);
+  }, [currentTab]);
+
   const contextValue = useMemo(
     () => ({
       currentTab,
       onChange: handleTabChange,
+      registerTab,
     }),
-    [currentTab, handleTabChange]
+    [currentTab, handleTabChange, registerTab]
   );
 
   return (
     <TabsContext.Provider value={contextValue}>
-      <div className="tabs">{children}</div>
+      <div className="tabs">
+        {children}
+        <Indicator style={indicatorStyle} />
+      </div>
     </TabsContext.Provider>
   );
+};
+
+const Indicator = ({ style }) => {
+  return <span className="tabs-indicator" style={style} />;
 };
 
 const TabsList = ({ children }) => {
@@ -52,12 +85,20 @@ const TabsList = ({ children }) => {
 };
 
 const Tab = ({ value, children, disabled }) => {
-  const { currentTab, onChange } = useTabs();
+  const { currentTab, onChange, registerTab } = useTabs();
+
+  const callbackRef = useCallback(
+    (element) => {
+      registerTab(value, element);
+    },
+    [value, registerTab]
+  );
 
   return (
     <button
       className={`tab ${currentTab === value ? 'active' : ''}`}
       onClick={() => onChange(value)}
+      ref={callbackRef}
       disabled={disabled}
     >
       {children}

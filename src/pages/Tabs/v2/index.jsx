@@ -1,9 +1,8 @@
-import ComponentLayout from '@/components/Layout/ComponentLayout';
-import { Tabs } from '@/components/Tabs/v1';
+import { Tabs } from '@/components/Tabs/v2';
 
-const TabsPageV1 = () => {
+const TabsPageV2 = () => {
   return (
-    <ComponentLayout title="Tabs">
+    <div>
       <Tabs defaultValue={'js'}>
         <Tabs.TabsList>
           <Tabs.Tab value={'js'}>Javascript</Tabs.Tab>
@@ -17,8 +16,8 @@ const TabsPageV1 = () => {
         <Tabs.TabPanel value={'css'}>This is CSS</Tabs.TabPanel>
         <Tabs.TabPanel value={'ts'}>This is TS</Tabs.TabPanel>
       </Tabs>
-    </ComponentLayout>
+    </div>
   );
 };
 
-export default TabsPageV1;
+export default TabsPageV2;
