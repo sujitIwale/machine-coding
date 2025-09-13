@@ -1,39 +1,39 @@
 import { Outlet } from 'react-router-dom';
 import './Layout.css';
 import SideBar from './Sidebar/Sidebar';
-import { Suspense, useState } from 'react';
-import { Tabs } from '../../Tabs/v2';
-import CodeSnippet from '../CodeSnippet/CodeSnippet';
+import { Suspense } from 'react';
 
 const Layout = () => {
-  const [sidebarWidth, setSidebarWidth] = useState(20);
-
   return (
     <div className="layout">
-      {/* <header>
-        <button onClick={() => navigate('/')}>Back</button>
-      </header> */}
-      <SideBar width={sidebarWidth} />
-      <main className="main-container">
+      {/* Sidebar */}
+      {/* <aside className="sidebar">
+        <h2 className="logo">MyApp</h2>
+        <nav className="nav">
+          <a href="#">Dashboard</a>
+          <a href="#">Profile</a>
+          <a href="#">Settings</a>
+          <a href="#">Logout</a>
+        </nav>
+      </aside> */}
+
+      <SideBar />
+
+      {/* Main Content */}
+      <div className="main">
+        {/* Header */}
+        {/* <header className="header">
+          <h1>Welcome</h1>
+          <div className="user">👤 User</div>
+        </header> */}
+
+        {/* Page Content */}
         <Suspense fallback={<div className="loading">Loading content...</div>}>
-          <Outlet />
-          {/* <Tabs defaultValue={'preview'}>
-            <Tabs.TabsList>
-              <Tabs.Tab value={'preview'}>Preview</Tabs.Tab>
-              <Tabs.Tab value={'code'}>Code</Tabs.Tab>
-            </Tabs.TabsList>
-            <Tabs.TabPanel value={'preview'}>
-              <Outlet />
-            </Tabs.TabPanel>
-            <Tabs.TabPanel value={'code'}>
-              <CodeSnippet
-                gistId="71922d881cb24f2bac3cb17ee5e521a6"
-                file={'example.jsx'}
-              />
-            </Tabs.TabPanel>
-          </Tabs> */}
+          <div className="content">
+            <Outlet />
+          </div>
         </Suspense>
-      </main>
+      </div>
     </div>
   );
 };
