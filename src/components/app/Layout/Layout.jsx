@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom';
 import './Layout.css';
 import SideBar from './Sidebar/Sidebar';
 import { Suspense, useState } from 'react';
-import { Tabs } from '../Tabs/v2';
+import { Tabs } from '../../Tabs/v2';
 import CodeSnippet from '../CodeSnippet/CodeSnippet';
 
 const Layout = () => {

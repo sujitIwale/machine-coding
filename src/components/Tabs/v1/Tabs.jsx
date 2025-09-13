@@ -5,7 +5,7 @@ import React, {
   useMemo,
   useState,
 } from 'react';
-// import './Tabs.css';
+import './Tabs.css';
 
 const TabsContext = createContext(null);
 
