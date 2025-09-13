@@ -1,6 +1,7 @@
 import { lazy } from 'react';
 const TabsPageV1 = lazy(() => import('@/pages/Tabs/v1'));
 const AnalogClockPage = lazy(() => import('@/pages/Clock'));
+const FolderTreePage = lazy(() => import('@/pages/FolderTree'));
 
 export const routes = [
   {
@@ -19,5 +20,10 @@ export const routes = [
     name: 'Analog clock',
     path: 'analog-clock',
     component: AnalogClockPage,
+  },
+  {
+    name: 'Folder Tree',
+    path: 'folder-tree',
+    component: FolderTreePage,
   },
 ];

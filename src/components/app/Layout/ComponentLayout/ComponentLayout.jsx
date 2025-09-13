@@ -7,7 +7,10 @@ import CopyButton from '../../CopyButton';
 const ComponentLayout = ({ config, children }) => {
   const [currentFileIndex, setCurrentFileIndex] = useState(0);
 
-  const currentFile = config.files[currentFileIndex];
+  let currentFile = null;
+  if (config?.files) {
+    currentFile = config.files[currentFileIndex];
+  }
 
   return (
     <div>
