@@ -9,14 +9,12 @@ const config = {
     {
       type: 'js',
       name: 'Tabs.jsx',
-      gistId: '71922d881cb24f2bac3cb17ee5e521a6',
       code: codeJs,
     },
     {
       type: 'css',
       name: 'Tabs.css',
       code: codeCss,
-      gistId: '97e52b97cf80fc7c642c193d68a8eb74',
     },
   ],
 };

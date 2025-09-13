@@ -1,6 +1,6 @@
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Layout from './components/Layout/Layout';
+import Layout from './components/app/Layout/Layout';
 import { routes } from './constants/routes';
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<div>Hello Welcome</div>} />
-{routes.map((route) => {
+          {routes.map((route) => {
             if (route.versions?.length) {
               return route.versions?.map((subRoute) => (
                 <Route

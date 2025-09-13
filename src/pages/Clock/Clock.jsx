@@ -1,63 +1,30 @@
-import { useRef, useState } from 'react';
-import './Clock.css';
 import ComponentLayout from '@/components/app/Layout/ComponentLayout';
+import AnalogClock from '@/components/AnalogClock/AnalogClock';
+import codeJs from '@/components/AnalogClock/AnalogClock.jsx?raw';
+import codeCss from '@/components/AnalogClock/AnalogClock.css?raw';
 
-const AnalogClock = () => {
-  const [time, setTime] = useState(new Date());
-  const intervalRef = useRef(undefined);
+const config = {
+  title: 'Analog Clock',
+  files: [
+    {
+      type: 'js',
+      name: 'AnalogClock.jsx',
+      code: codeJs,
+    },
+    {
+      type: 'css',
+      name: 'AnalogClock.css',
+      code: codeCss,
+    },
+  ],
+};
 
-  const handleSecChange = () => {
-    setTime(new Date());
-  };
-
-  const start = () => {
-    if (intervalRef.current) clearInterval(intervalRef.current);
-    intervalRef.current = setInterval(handleSecChange, 1000);
-  };
-
-  const pause = () => {
-    clearInterval(intervalRef.current);
-  };
-
+const AnalogClockPage = () => {
   return (
-    // <ComponentLayout title="Analog Clock">
-    <div className="clock-container">
-      <div className="clock">
-        <span className="dot" />
-        <div
-          style={{
-            transform: `rotate(${time.getSeconds() * 6}deg)`,
-          }}
-          className="hand second"
-        ></div>
-        <div
-          className="hand minute"
-          style={{
-            transform: `rotate(${time.getMinutes() * 6}deg)`,
-          }}
-        ></div>
-        <div
-          className="hand hour"
-          style={{
-            transform: `rotate(${time.getHours() * 30}deg)`,
-          }}
-        ></div>
-
-        {/* {Array.from({ length: 60 }).map(() => (
-        ))} */}
-        <span className="mark twelve"></span>
-        <span className="mark three"></span>
-        <span className="mark six"></span>
-        <span className="mark nine"></span>
-      </div>
-
-      <div className="buttons">
-        <button onClick={start}>start</button>
-        <button onClick={pause}>pause</button>
-      </div>
-    </div>
-    // </ComponentLayout>
+    <ComponentLayout config={config}>
+      <AnalogClock />
+    </ComponentLayout>
   );
 };
 
-export default AnalogClock;
+export default AnalogClockPage;
