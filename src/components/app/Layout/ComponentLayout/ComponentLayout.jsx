@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from './ComponentLayout.module.css';
 import CodeSnippet from '@/components/app/CodeSnippet/CodeSnippet';
 import { Tabs } from '@/components/Tabs/v2';
-import { concat } from '@/utils/styles';
+import CopyButton from '../../CopyButton';
 
 const ComponentLayout = ({ config, children }) => {
   const [currentFileIndex, setCurrentFileIndex] = useState(0);
@@ -10,7 +10,7 @@ const ComponentLayout = ({ config, children }) => {
   const currentFile = config.files[currentFileIndex];
 
   return (
-    <div className="">
+    <div>
       <h1 className={styles.title}>{config.title}</h1>
       <div className={styles.content}>
         <div className={styles.preview}>{children}</div>
@@ -28,9 +28,7 @@ const ComponentLayout = ({ config, children }) => {
                   ))}
                 </Tabs.TabsList>
               </Tabs>
-              <button className={concat('app-button', styles['copy-btn'])}>
-                Copy
-              </button>
+              <CopyButton value={currentFile.code} />
             </div>
             <div className={styles['component-code']}>
               <CodeSnippet

@@ -32,6 +32,14 @@ body {
   display: none;
 }
 
-button {
+.app-button {
   cursor: pointer;
+  border: none;
+  outline: none;
+  height: fit-content;
+  background-color: transparent;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
